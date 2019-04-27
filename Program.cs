@@ -8,30 +8,26 @@ namespace Algoritm
 {                               // Таможний П.И.
     class Program
     {
-        static public void Automorf(int n) //Определение автоморфных чисел
+        static public void Automorf(int n) //Определение автоморфных чисел от 1 до n
         {
-            string w = null;
-            string m = null;
-            Stack<double> stack = new Stack<double>();
             for (int i = 1; i <= n; i++)
             {
+                string w = "1";
                 int pow = Convert.ToInt32(Math.Pow(i, 2));
-                while (pow > 0)
+                int j = i;
+                int count = 0;
+                while (j > 0)
                 {
-                    stack.Push(pow % 10);
-                    pow /= 10;
+                    j /= 10;
+                    count++;
                 }
-                for (int j = 0; j <= (i.ToString()).Length; j++)
+                while (count > 0)
                 {
-                    m += stack.Pop().ToString();
+                    w += "0";
+                    count--;
                 }
-                int e = int.Parse(m);
-                while (e > 0)
-                {
-                    w += e % 10;
-                    e /= 10;
-                }
-                if (w == n.ToString())
+                int m = pow % int.Parse(w);
+                if (m == i)
                 {
                     Console.Write($"{i} ");
                 }
