@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algoritm
 {
-    class Program
+    class Program                                      //Таможний П.И.
     {
         static string BiNumber(int i, ref string j)
         {
@@ -92,6 +92,8 @@ namespace Algoritm
             Console.WriteLine(MyPow(-2, 3));
             Console.WriteLine(RecPow(-2, 3));
             Console.WriteLine(NewPow(-2, 9));
+
+
 
             Console.ReadKey();
         }
