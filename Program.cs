@@ -109,11 +109,9 @@ namespace Algoritm
             if(a < b)
             {
                 int a1 = a + 1;
-                if (a1 < b) CountRoadRec(a1, b, ref count);
-                else if(a1 == b) count++;
                 int a2 = a * 2;
-                if (a2 < b) CountRoadRec(a2, b, ref count);
-                else if (a2 == b) count++;
+                CountRoadRec(a1, b, ref count);
+                CountRoadRec(a2, b, ref count);
             }
             else if (a == b) count++;
         } //Количество ходов калькулятора с помощью рекурсии
