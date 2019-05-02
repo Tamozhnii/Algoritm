@@ -121,16 +121,24 @@ namespace Algoritm
         static void Main(string[] args)
         {
             string biNumber = null;
-            Console.WriteLine(BiNumber(25, ref biNumber));//Задание 1
+            Console.Write("Введите число, для получекния его двоичного представления: ");
+            int x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(BiNumber(x, ref biNumber));//Задание 1
 
-            Console.WriteLine(MyPow(-2, 3));//Задание 2
-            Console.WriteLine(RecPow(-2, 3));
-            Console.WriteLine(NewPow(-2, 9));
+            Console.WriteLine("Три вида возведения в степень:");
+            Console.Write("Введите число: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите степень: ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Циклом: {MyPow(a, b)}");//Задание 2
+            Console.WriteLine($"Рекурсией: {RecPow(a, b)}");
+            Console.WriteLine($"Рекурсией со свойствами четности степени: {NewPow(a, b)}");
 
-            Console.WriteLine(CountRoad(1, 2));//Задание 3
+            Console.WriteLine("Количество ходов для Калькулятора от 3 до 20");
+            Console.WriteLine($"Циклом: {CountRoad(3, 20)}");//Задание 3
             int count = 0;
-            CountRoadRec(1, 2, ref count);
-            Console.WriteLine(count);
+            CountRoadRec(3, 20, ref count);
+            Console.WriteLine($"Рекурсией: {count}");
 
             Console.ReadKey();
         }
