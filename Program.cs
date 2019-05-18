@@ -29,6 +29,8 @@ namespace Algoritm                                      //Таможний Пе�
         //Задание 1. Попробовать оптимизировать пузырьковую сортировку. Сравнить количество операций сравнения оптимизированной и неоптимизированной программы. Написать функции сортировки, которые возвращают количество операций.
         public static void BubbleSort(int[] b) //Пузырьковая сортировка
         {
+            int complexity = (b.Length - 1) * (b.Length / 2);
+            Console.WriteLine($"Coplexity Bubble sort is {complexity}");
             int arrCount = 0;
             int swapCount = 0;
             int x = 0;
@@ -51,7 +53,7 @@ namespace Algoritm                                      //Таможний Пе�
             {
                 Console.Write("{0} ", i);
             }
-            Console.WriteLine($"\nUse array - {arrCount} and swaps - {swapCount}");
+            Console.WriteLine($"\nComplexity - {arrCount} and swaps - {swapCount}");
         }
         public static void MyBubbleSort(int[] a)
         {
@@ -90,12 +92,14 @@ namespace Algoritm                                      //Таможний Пе�
             {
                 Console.Write($"{item} ");
             }
-            Console.WriteLine($"\nUse array - {arrCount} and swaps - {swapCount}");
+            Console.WriteLine($"\nComplexity - {arrCount} and swaps - {swapCount}");
         } //Оптимизированная Пузырьковая сортировка
 
         //Задание 2. *Реализовать шейкерную сортировку.
         public static void ShakeSort(int[] a)
         {
+            int complexity = (a.Length - 1) * (a.Length / 2);
+            Console.WriteLine($"Coplexity Shaker sort is {complexity}");
             int arrCount = 0;
             int arrSwap = 0;
             int swap = 0;
@@ -145,7 +149,7 @@ namespace Algoritm                                      //Таможний Пе�
             {
                 Console.Write($"{item} ");
             }
-            Console.WriteLine($"\nArr use - {arrCount}, swaps - {arrSwap}");
+            Console.WriteLine($"\nComplexity - {arrCount}, swaps - {arrSwap}");
         } //Шейкерная сортировка
 
         //Задание 3. Реализовать бинарный алгоритм поиска в виде функции, которой передаётся отсортированный массив. Функция возвращает индекс найденного элемента или –1, если элемент не найден.
