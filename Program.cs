@@ -92,26 +92,6 @@ namespace Algoritm                                      //Таможний Пе�
             }
             Console.WriteLine($"\nUse array - {arrCount} and swaps - {swapCount}");
         } //Оптимизированная Пузырьковая сортировка
-        public static void TotalBubble(out int[] a,out int[] b,out int[] c, out int[] d, int length)
-        {
-            a = new int[length];
-            b = new int[length];
-            c = new int[length];
-            d = new int[length];
-            Arr(out a, length, 10);
-            Console.Write("\nArray: ");
-            for (int i = 0; i < a.Length; i++)
-            {
-                Console.Write($"{a[i]} ");
-            }
-            Console.WriteLine();
-            CopyArr(out c, a);
-            CopyArr(out b, a);
-            CopyArr(out d, a);
-            BubbleSort(b);
-            MyBubbleSort(c);
-            ShakeSort(d);
-        }//Выводит на экран итоги Пузырьковой сортировки
 
         //Задание 2. *Реализовать шейкерную сортировку.
         public static void ShakeSort(int[] a)
@@ -168,13 +148,95 @@ namespace Algoritm                                      //Таможний Пе�
             Console.WriteLine($"\nArr use - {arrCount}, swaps - {arrSwap}");
         } //Шейкерная сортировка
 
+        //Задание 3. Реализовать бинарный алгоритм поиска в виде функции, которой передаётся отсортированный массив. Функция возвращает индекс найденного элемента или –1, если элемент не найден.
+        public static void BinarSearch(int[] a, int search, int index)
+        {
+            int[] b;
+            int n = a.Length / 2;
+            index += n;
+            if (a.Length == 1 && a[0] == search)
+            {
+                Console.WriteLine($"Number {search} in array under the index: {index}");
+            }
+            else if (search == a[n]) Console.WriteLine($"Number {search} in array under the index: {index}");
+            else if (a.Length % 2 != 0 && a.Length > 1)
+            {
+                if (search > a[n])
+                {
+                    b = new int[n];
+                    for (int i = 0; i < n; i++)
+                    {
+                        b[i] = a[n + 1 + i];
+                    }
+                    index += 1;
+                    BinarSearch(b, search, index);
+                }
+                else if (search < a[n])
+                {
+                    b = new int[n];
+                    index -= n;
+                    for (int i = 0; i < n; i++)
+                    {
+                        b[i] = a[i];
+                    }
+                    BinarSearch(b, search, index);
+                }
+            }
+            else if (a.Length % 2 == 0 && a.Length > 1)
+            {
+                if (search > a[n])
+                {
+                    b = new int[n];
+                    for (int i = 0; i < n; i++)
+                    {
+                        b[i] = a[n + i];
+                    }
+                    BinarSearch(b, search, index);
+                }
+                else if (search < a[n])
+                {
+                    b = new int[n];
+                    index -= n;
+                    for (int i = 0; i < n; i++)
+                    {
+                        b[i] = a[i];
+                    }
+                    BinarSearch(b, search, index);
+                }
+            }
+            else Console.WriteLine($"Number {search} do not found in array");
+        }//Бинарный поиск числа
+
+        //Задание 4. *Подсчитать количество операций для каждой из сортировок и сравнить его с асимптотической сложностью алгоритма.
+        public static void Stat(out int[] a, out int[] b, out int[] c, out int[] d,out int[] f, int length, int searchNum)
+        {
+            a = new int[length];
+            b = new int[length];
+            c = new int[length];
+            d = new int[length];
+            f = new int[length];
+            Arr(out a, length, 10);
+            Console.Write("\nArray: ");
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write($"{a[i]} ");
+            }
+            Console.WriteLine();
+            CopyArr(out c, a);
+            CopyArr(out b, a);
+            CopyArr(out d, a);
+            BubbleSort(b);
+            MyBubbleSort(c);
+            ShakeSort(d);
+            CopyArr(out f, d);
+            BinarSearch(f, searchNum, 0);
+        }//Выводит на экран статистику
+
         static void Main(string[] args)
         {
-            int[] a, b, c, d;
-            TotalBubble(out a, out b, out c, out d, 10);
-            TotalBubble(out a, out b, out c, out d, 100);
-            //TotalBubble(out a, out b, out c, out d, 200); //Задание 1, 2 Пузырьковая и Шейкерная сортировки
-
+            int[] a, b, c, d, f;
+            Stat(out a, out b, out c, out d, out f, 10, 7);
+            //TotalBubble(out a, out b, out c, out d, 100); //Задание 1, 2, 3 Пузырьковая и Шейкерная сортировки + бинарный поиск
 
             Console.ReadKey();
         }
