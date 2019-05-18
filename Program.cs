@@ -53,7 +53,6 @@ namespace Algoritm                                      //Таможний Пе�
             }
             Console.WriteLine($"\nUse array - {arrCount} and swaps - {swapCount}");
         }
-
         public static void MyBubbleSort(int[] a)
         {
             int arrCount = 0;
@@ -93,11 +92,12 @@ namespace Algoritm                                      //Таможний Пе�
             }
             Console.WriteLine($"\nUse array - {arrCount} and swaps - {swapCount}");
         } //Оптимизированная Пузырьковая сортировка
-        public static void TotalBubble(out int[] a,out int[] b,out int[] c, int length)
+        public static void TotalBubble(out int[] a,out int[] b,out int[] c, out int[] d, int length)
         {
             a = new int[length];
             b = new int[length];
             c = new int[length];
+            d = new int[length];
             Arr(out a, length, 10);
             Console.Write("\nArray: ");
             for (int i = 0; i < a.Length; i++)
@@ -107,15 +107,58 @@ namespace Algoritm                                      //Таможний Пе�
             Console.WriteLine();
             CopyArr(out c, a);
             CopyArr(out b, a);
+            CopyArr(out d, a);
             BubbleSort(b);
             MyBubbleSort(c);
-        }
+            ShakeSort(d);
+        }//Выводит на экран итоги Пузырьковой сортировки
+
+        //Задание 2. *Реализовать шейкерную сортировку.
+        public static void ShakeSort(int[] a)
+        {
+            int arrCount = 0;
+            int arrSwap = 0;
+            int swap = 0;
+            for (int i = 0; i < a.Length - 2; i++)
+            {
+                int n = a.Length - 1;
+                for (int j = 1; j < a.Length; j++)
+                {
+                    if (a[j] < a[j - 1])
+                    {
+                        swap = a[j];
+                        a[j] = a[j - 1];
+                        a[j - 1] = swap;
+                        arrSwap++;
+                    }
+                }
+                for (int k = n; k > 0; k--)
+                {
+                    if (a[k] < a[k - 1])
+                    {
+                        swap = a[k];
+                        a[k] = a[k - 1];
+                        a[k - 1] = swap;
+                        arrSwap++;
+                    }
+                }
+                arrCount++;
+            }
+            Console.Write("After Shake sort: ");
+            foreach (int item in a)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine($"\nArr use - {arrCount}, swaps - {arrSwap}");
+        } //Шейкерная сортировка
+
         static void Main(string[] args)
         {
-            int[] a, b, c;
-            TotalBubble(out a, out b, out c, 10);
-            TotalBubble(out a, out b, out c, 100);
-            TotalBubble(out a, out b, out c, 500);
+            int[] a, b, c, d;
+            TotalBubble(out a, out b, out c, out d, 10);
+            TotalBubble(out a, out b, out c, out d, 100);
+            TotalBubble(out a, out b, out c, out d, 200); //Задание 1, 2 Пузырьковая и Шейкерная сортировки
+
 
             Console.ReadKey();
         }
