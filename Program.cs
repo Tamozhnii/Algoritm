@@ -119,30 +119,46 @@ namespace Algoritm                                      //Таможний Пе�
             int arrCount = 0;
             int arrSwap = 0;
             int swap = 0;
+            int t = a.Length;
+            int o = 0;
             for (int i = 0; i < a.Length - 2; i++)
             {
+                bool f = false;
+                int d = 1;
+                int b = 0;
                 int n = a.Length - 1;
-                for (int j = 1; j < a.Length; j++)
+                for (int j = 1; j < t; j++)
                 {
                     if (a[j] < a[j - 1])
                     {
                         swap = a[j];
                         a[j] = a[j - 1];
-                        a[j - 1] = swap;
+                        a[j - d] = swap;
                         arrSwap++;
+                        d = 1;
+                        f = true;
                     }
+                    else if (a[j] == a[j - 1]) d++;
+                    else if (a[j] > a[j - 1]) d = 1;
                 }
-                for (int k = n; k > 0; k--)
+                for (int k = n; k > o; k--)
                 {
                     if (a[k] < a[k - 1])
                     {
                         swap = a[k];
-                        a[k] = a[k - 1];
+                        a[k + b] = a[k - 1];
                         a[k - 1] = swap;
                         arrSwap++;
+                        f = true;
+                        b = 0;
                     }
+                    else if (a[k] == a[k - 1]) b++;
+                    else if (a[k] > a[k - 1]) b = 0;
                 }
+                t--;
+                o++;
                 arrCount++;
+                if (f == false) break;
             }
             Console.Write("After Shake sort: ");
             foreach (int item in a)
@@ -157,7 +173,7 @@ namespace Algoritm                                      //Таможний Пе�
             int[] a, b, c, d;
             TotalBubble(out a, out b, out c, out d, 10);
             TotalBubble(out a, out b, out c, out d, 100);
-            TotalBubble(out a, out b, out c, out d, 200); //Задание 1, 2 Пузырьковая и Шейкерная сортировки
+            //TotalBubble(out a, out b, out c, out d, 200); //Задание 1, 2 Пузырьковая и Шейкерная сортировки
 
 
             Console.ReadKey();
