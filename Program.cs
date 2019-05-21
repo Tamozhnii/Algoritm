@@ -69,6 +69,87 @@ namespace Algoritm
                 M[n, m] = 0;
             }
         }
+
+        //Задание 2. Решить задачу о нахождении длины максимальной подпоследовательности с помощью матрицы.
+        static void Print3(char[] lcs, int count)
+        {
+            Console.Write("Наибольшая общая подпоследовательность ");
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write($"{lcs[i]} ");
+            }
+            Console.WriteLine($"имеет {count} элементов");
+        } //Печать результатов поиска ОНП
+        static void LCS(string a, string b)
+        {
+            int ac = 0, bc = 0, countA = 0, countB = 0;
+            char[] lcs1 = new char[a.Count()];
+            char[] lcs2 = new char[b.Count()];
+            for (int i = 0; i < a.Count(); i++) //сравнения строки а со строкой b
+            {
+                if(i + ac < b.Count())
+                {
+                    if (a[i] == b[i + ac])
+                    {
+                        lcs1[i] = a[i];
+                        countA++;
+                    }
+                    else
+                    {
+                        for (int j = i + ac + 1; j < b.Count(); j++)
+                        {
+                            if (j + ac < b.Count())
+                            {
+                                if (a[i] == b[j + ac])
+                                {
+                                    lcs1[i] = a[i];
+                                    ac++;
+                                    countA++;
+                                    break;
+                                }
+                            }
+                            else break;
+                        }
+                    }
+                } else break;
+            }
+            for (int n = 0; n < b.Count(); n++) //сравнения строки b со строкой a
+            {
+                if(n + bc < a.Count())
+                {
+                    if (b[n] == a[n + bc])
+                    {
+                        lcs2[n] = b[n];
+                        countB++;
+                    }
+                    else
+                    {
+                        for (int m = n + bc + 1; m < a.Count(); m++)
+                        {
+                            if (m + bc < a.Count())
+                            {
+                                if (b[n] == a[m + bc])
+                                {
+                                    lcs2[n] = b[n];
+                                    bc++;
+                                    countB++;
+                                    break;
+                                }
+                            }
+                            else break;
+                        }
+                    }
+                } else break;
+            }
+            if (countA > countB) Print3(lcs1, countA);
+            else if (countA < countB) Print3(lcs2, countB);
+            else
+            {
+                Console.WriteLine("Равны");
+                Print3(lcs1, countA);
+                Print3(lcs2, countB);
+            }
+        } //ОНП с помощью матрицы
         static void Main(string[] args)
         {
             int x, y, let;
@@ -81,6 +162,11 @@ namespace Algoritm
             int.TryParse(Console.ReadLine(), out let);
             int[,] M = new int[x, y];
             Move(let, x, y, M); //Задание 1 Пути на доске с препятствиями
+
+            Console.WriteLine("Введите два массиа символов для нахождения общей наибольшей подпоследовательности:");
+            string a = Console.ReadLine();
+            string b = Console.ReadLine();
+            LCS(a, b); //Задача 2 ОНП с помощью матрицы
 
             Console.ReadKey();
         }
