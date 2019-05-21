@@ -76,7 +76,7 @@ namespace Algoritm                                  //Таможний П.И.
             Console.Write("Наибольшая общая подпоследовательность ");
             for (int i = 0; i < count; i++)
             {
-                Console.Write($"{lcs[i]} ");
+                if(lcs[i].ToString() != " ") Console.Write($"{lcs[i]} ");
             }
             Console.WriteLine($"имеет {count} элементов");
         } //Печать результатов поиска ОНП
@@ -91,7 +91,7 @@ namespace Algoritm                                  //Таможний П.И.
                 {
                     if (a[i] == b[i + ac])
                     {
-                        lcs1[i] = a[i];
+                        lcs1[countA] = a[i];
                         countA++;
                     }
                     else
@@ -102,7 +102,7 @@ namespace Algoritm                                  //Таможний П.И.
                             {
                                 if (a[i] == b[j + ac])
                                 {
-                                    lcs1[i] = a[i];
+                                    lcs1[countA] = a[i];
                                     ac++;
                                     countA++;
                                     break;
@@ -119,7 +119,7 @@ namespace Algoritm                                  //Таможний П.И.
                 {
                     if (b[n] == a[n + bc])
                     {
-                        lcs2[n] = b[n];
+                        lcs2[countB] = b[n];
                         countB++;
                     }
                     else
@@ -130,7 +130,7 @@ namespace Algoritm                                  //Таможний П.И.
                             {
                                 if (b[n] == a[m + bc])
                                 {
-                                    lcs2[n] = b[n];
+                                    lcs2[countB] = b[n];
                                     bc++;
                                     countB++;
                                     break;
