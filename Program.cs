@@ -71,9 +71,14 @@ namespace Algoritm                         //Таможний П.И.
 
         //Задание 5. *Реализовать алгоритм перевода из инфиксной записи арифметического выражения в постфиксную.
 
-        static void Infix()
+        static void Infix(string formula)
         {
+            if (Bracket(formula))
+            {
 
+
+            }
+            else Console.WriteLine("Error formula");
         }
 
         static void Main(string[] args)
