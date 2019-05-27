@@ -8,8 +8,23 @@ namespace Algoritm
 {
     class Program
     {
+        public static int HashSum(string x)
+        {
+            int sum = 0;
+            int num;
+            for (int i = 0; i < x.Length; i++)
+            {
+                num = ((x[i].GetHashCode() - 185700) * 17 / 13);
+            sum += num;
+            }
+            return sum;
+        }
+
         static void Main(string[] args)
         {
+            string x = Console.ReadLine();
+            Console.WriteLine(HashSum(x));
+            Console.ReadKey();
         }
     }
 }
