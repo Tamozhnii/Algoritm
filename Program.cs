@@ -14,7 +14,7 @@ namespace Algoritm
             int num;
             for (int i = 0; i < x.Length; i++)
             {
-                num = ((x[i].GetHashCode() - 185700) * 17 / 13);
+                num = (Convert.ToByte(x[i]) * 17 / 13);
             sum += num;
             }
             return sum;
