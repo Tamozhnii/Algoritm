@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algoritm
+namespace Algoritm                              //Таможний Петр
 {
     class Program
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
